@@ -1,0 +1,37 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Afficher mes incidents
+    </ion-title>
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button color="danger">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let myIncident of MyIncidentList;let i = index" (click)="GetDetailonIncident(myIncident,i)" >
+    <ion-item >
+      <ion-card-header>
+        <img [src]="ListImage[i]" style="height:180px;"/>
+      </ion-card-header>
+      <ion-card-content>
+          <strong> Secteur :</strong> {{myIncident.secteur}}<br/>
+          <strong>Type :</strong>{{myIncident.type}}<br/>
+          <strong>Date :</strong>{{myIncident.date}}
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="presentModal()">
+    <ion-fab-button color="danger">
+      <ion-icon name="search"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

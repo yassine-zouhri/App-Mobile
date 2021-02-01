@@ -1,0 +1,79 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Ajouter un incident
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" (click)="VerifierInfoIncident()">
+
+  <ion-item>
+    <ion-label >Secteur</ion-label>
+    <ion-select  #S placeholder="Select One" (ionChange)="ChangeType(S.value);VerifierInfoIncident()">
+      <ion-select-option *ngFor="let secteur1 of Secteur" value={{secteur1}}>{{secteur1}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Type</ion-label>
+    <ion-select  #S123 (ionChange)="VerifierInfoIncident();GetType(S123.value)" placeholder="Select One">
+      <ion-select-option  *ngFor="let type of MyTypes" value={{type}}>{{type}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-card-title>Obtenir les coordonnées</ion-card-title>
+        <ion-button disabled (click)="getCurrentCoordinates()" slot="end" color="primary" style="height: 40px;"><ion-icon name="location-outline" size="large"></ion-icon></ion-button>
+      </ion-item>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">Longitude</ion-label>
+        <ion-input (ionChange)="VerifierInfoIncident()" value='{{longitude}}'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Latitude</ion-label>
+        <ion-input value='{{latitude}}'></ion-input>
+      </ion-item>
+      <!--
+      <ion-item>
+        <ion-label position="stacked">Region</ion-label>
+        <ion-input (ionChange)="VerifierInfoIncident()" value='{{MaRegion}}'></ion-input>
+      </ion-item>-->
+      <ion-item>
+        <ion-label position="stacked">Province</ion-label>
+        <ion-input value='{{MaProvince}}'></ion-input>
+      </ion-item>
+      <!--<ion-item>
+        <ion-label position="stacked">Ville</ion-label>
+        <ion-input value='{{MaVille}}'></ion-input>
+      </ion-item>-->
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-item>
+        <ion-card-title>Prendre une photo</ion-card-title>
+        <ion-button (click)="PrendrePhoto()" slot="end" color="primary" style="height: 40px;"><ion-icon name="camera-outline" size="large"></ion-icon></ion-button>
+      </ion-item>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <img  *ngIf="picture" [src]="picture"  style="height: 400px;width: 100%;"/>
+    </ion-card-content>
+  </ion-card>
+ 
+  <ion-item>
+    <ion-label position="floating" >Description</ion-label>
+    <ion-textarea #SS  (ionChange)="GetDescription(SS.value)"></ion-textarea>
+  </ion-item>
+ <!-- <img  *ngIf="picture" [src]="picture"  style="height: 400px;width: 100%;"/>
+  <ion-button disabled expand="block" (click)="VerifierInfoIncident()">{{IMEIcode}}</ion-button>-->
+  <ion-button expand="block" (click)="OnValidateIncident()" [disabled]="!validateBT">Valider</ion-button>
+</ion-content>

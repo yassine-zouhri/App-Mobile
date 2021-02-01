@@ -1,0 +1,15 @@
+ion-select {
+    width: 100%;
+  
+    justify-content: center;
+  }
+
+ion-select::part(text) {
+    flex: 0 0 auto;
+    color: orangered;
+    opacity: 2;
+  }
+  ion-select::part(placeholder) {
+    color: orangered;
+    opacity: 1;
+  }

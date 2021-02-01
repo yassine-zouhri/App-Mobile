@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color='secondary'>
+    <ion-title>Filtrer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>Secteur</ion-label>
+    <ion-select class="FilterSecteur" [disabled]="FilterSecteur" #S placeholder="Select One" (ionChange)="ChangeType(S.value);SaveFilterSecteur(S.value)">
+      <ion-select-option *ngFor="let secteur1 of Secteur" value={{secteur1}}>{{secteur1}}</ion-select-option>
+    </ion-select>
+    &nbsp;&nbsp;
+    <ion-button  (click)="deleteFilterSecteur()" Slots="icon-only"  [hidden]="!IconDelete" color="light" style="width: 40px;">
+      <ion-icon size="large" name="trash-outline" color="danger"></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Type</ion-label>
+    <ion-select (click)="ChangeType()" class="FilterType" [disabled]="FilterType" #Type (ionChange)="SaveFilterType(Type.value)" placeholder="Select One">
+      <ion-select-option  *ngFor="let type of MyTypes" value={{type}}>{{type}}</ion-select-option>
+    </ion-select>
+    &nbsp;&nbsp;
+    <ion-button (click)="deleteFilterType()" Slots="icon-only"  [hidden]="!IconDelete" color="light" style="width: 40px;">
+      <ion-icon  size="large"  name="trash-outline" color="danger" ></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Region</ion-label>
+    <ion-select class="FilterRegion" [disabled]="FilterRegion" #Region (ionChange)="SaveFilterRegion(Region.value)"  placeholder="Select One">
+      <ion-select-option  *ngFor="let region of NomsRegionFiltre" value={{region}}>{{region}}</ion-select-option>
+    </ion-select>
+    &nbsp;&nbsp;
+    <ion-button (click)="deleteFilterRegion()" Slots="icon-only"  [hidden]="!IconDelete" color="light" style="width: 40px;">
+      <ion-icon size="large"  name="trash-outline" color="danger" ></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Province</ion-label>
+    <ion-select class="FilterProvince" [disabled]="FilterProvince" #S1234 (ionChange)="SaveFilterProvince(S1234.value)"  placeholder="Select One">
+      <ion-select-option  *ngFor="let Province of NomsProvinceFiltre" value={{Province}}>{{Province}}</ion-select-option>
+    </ion-select>
+    &nbsp;&nbsp;
+    <ion-button (click)="deleteFilterProvince()" Slots="icon-only"  [hidden]="!IconDelete" color="light" style="width: 40px;">
+      <ion-icon size="large" name="trash-outline" color="danger" ></ion-icon>
+    </ion-button>
+  </ion-item>
+  <ion-item>
+    <ion-label>Ville</ion-label>
+    <ion-select class="FilterVille" [disabled]="FilterVille" #S12345 (ionChange)="SaveFilterVille(S12345.value)"  placeholder="Select One">
+      <ion-select-option  *ngFor="let ville of NomsVilleFiltre" value={{ville}}>{{ville}}</ion-select-option>
+    </ion-select>
+    &nbsp;&nbsp;
+    <ion-button (click)="deleteFilterVille()" Slots="icon-only"  [hidden]="!IconDelete" color="light" style="width: 40px;">
+      <ion-icon size="large"  name="trash-outline" color="danger" ></ion-icon>
+    </ion-button>
+  </ion-item>
+  <br/>
+  <ion-button expand="block" color="secondary" (click)="closeModal();">Filtrer</ion-button>
+  <ion-button expand="block" color="danger" (click)="DeleteFilter()">Annuler un filtration</ion-button>
+</ion-content>
